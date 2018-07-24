@@ -1,3 +1,7 @@
+# Job Recommendation Engine
+- Takes input from resume as doc/docx from potential job candidate
+- Scrapes Indeed for potential listings using NLP
+- Sends email as task in worker queue
 ## DEV Instructions
 
 To run:
