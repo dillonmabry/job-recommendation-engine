@@ -1,10 +1,11 @@
 from flask import Flask, request, jsonify
-from nlp import extract_keywords
+from nlp import NLP
 from worker import scrape_and_mail
 
 ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 app = Flask(__name__)
+NLP = NLP()
 TASKS = {} # celery tasks
 
 def allowed_file(filename):
@@ -20,7 +21,7 @@ def upload_file():
     if file.filename == '':
         return 'No selected file'
     if file and allowed_file(file.filename):
-        keywords = extract_keywords(file)
+        keywords = NLP.extract_keywords(file)
         # mail queue for tasks
         task_id = len(TASKS)
         TASKS[task_id] = scrape_and_mail.delay(keywords)
@@ -35,11 +36,10 @@ def list_tasks():
 
 @app.route('/<int:task_id>', methods=['GET'])
 def get_task(task_id):
-    response = {'task_id': task_id}
-
     task = TASKS[task_id]
+    response = {'task_id': task_id}
     if task.ready():
-        response['result'] = task.get()
+        response['done'] = task.get()
     return jsonify(response)
 
 if __name__ == '__main__':

@@ -1,5 +1,5 @@
 from celery import Celery
-from search import search
+from search import process
 
 # run with:
 # $ redis-server
@@ -10,6 +10,6 @@ app = Celery(__name__, backend='rpc://', broker='redis://localhost:6379/')
 @app.task
 def scrape_and_mail(keywords):
     try:
-        return search(keywords)
+        return process(keywords)
     except Exception:
         return Exception

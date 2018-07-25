@@ -60,7 +60,7 @@ def send_mail(posts):
     server.sendmail(fromaddr, toaddr, text)
     server.quit()
 
-def search(search_terms):
+def process(search_terms):
     try:
         print("Processing...")
         start_time = time.time()
@@ -77,4 +77,4 @@ def search(search_terms):
             print("--- Mail Sent ---")
             return True
     except Exception as e:
-        return str(e)
+        return e
