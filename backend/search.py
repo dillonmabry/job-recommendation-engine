@@ -4,15 +4,15 @@ import time
 from bs4 import BeautifulSoup
 import multiprocessing
 from multiprocessing.pool import ThreadPool
-import smtplib
-from email.mime.text import MIMEText
-from email.mime.multipart import MIMEMultipart
-
-# Config
 import config 
+from mail import Mailer
+from logger import Logger
+
 FROM_EMAIL = getattr(config, 'FROM_EMAIL')
 TO_EMAIL = getattr(config, 'TO_EMAIL')
 SMTP_PASS = getattr(config, 'SMTP_PASS')
+__mailer = Mailer(FROM_EMAIL, TO_EMAIL, SMTP_PASS)
+__logger = logger = Logger("search").get()
 
 BASE_URL = 'https://www.indeed.com'
 NUM_PAGES = 5
@@ -43,26 +43,9 @@ def get_posts(url):
                     if ahref is not None:
                         return BASE_URL + ahref['href']
 
-def send_mail(posts):
-    fromaddr = FROM_EMAIL
-    toaddr = TO_EMAIL
-    msg = MIMEMultipart()
-    msg['From'] = fromaddr
-    msg['To'] = toaddr
-    msg['Subject'] = "JOB POSTINGS AS OF "+str(datetime.datetime.now())
-
-    body = '\n\n'.join([str(x) for x in posts])
-    msg.attach(MIMEText(body, 'plain'))
-
-    server = smtplib.SMTP_SSL('smtp.gmail.com:465')
-    server.login(fromaddr, SMTP_PASS)
-    text = msg.as_string()
-    server.sendmail(fromaddr, toaddr, text)
-    server.quit()
-
 def process(search_terms):
     try:
-        print("Processing...")
+        __logger.info("Starting web scrape...")
         start_time = time.time()
         # generate links to process
         links = get_links(BASE_URL, NUM_PAGES, search_terms)
@@ -71,10 +54,11 @@ def process(search_terms):
         with ThreadPool(POOL_SIZE) as p:
             all_posts = p.map(get_posts, links)
             unique_posts = set(all_posts)
-            print("--- Finished processing in %s seconds ---" % (time.time() - start_time))
             p.terminate()
-            send_mail(unique_posts)
-            print("--- Mail Sent ---")
+            joined_posts = '\n\n'.join([str(x) for x in unique_posts])
+            __mailer.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts)
+            __logger.info("Successfully processed listings")
             return True
     except Exception as e:
-        return e
+        __logger.exception(str(e))
+        raise e

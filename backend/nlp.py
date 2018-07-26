@@ -34,3 +34,4 @@ class NLP(object):
 
         except Exception as e:
             self.logger.exception(str(e))
+            raise e
