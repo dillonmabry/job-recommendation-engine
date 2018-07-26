@@ -24,3 +24,11 @@ curl localhost:5000/<task-id>
 ```
 ## PROD Instructions
 *Dockerfile to be created soon
+
+## TODO:
+ * [x] NLP for suggesting jobs
+ * [x] Email notifications
+ * [x] API for task management 
+ * [ ] Dockerfile for deployment
+ * [ ] Front-end for task management
+ * [ ] Front-end for users to upload resume, see suggested jobs
