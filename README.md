@@ -3,11 +3,12 @@
 - Scrapes Indeed for potential listings using NLP
 - Sends email as task in worker queue
 ## DEV Instructions
-Install:
+- Install Backend:
 ```
 ./install.sh
 ```
-To run:
+- Configure config file (change config-example.py to "config.py")
+- To run:
 ```
 redis-server
 celery -A worker worker --loglevel=debug
