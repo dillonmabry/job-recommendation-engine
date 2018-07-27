@@ -3,11 +3,12 @@
 - Scrapes Indeed for potential listings using NLP
 - Sends email as task in worker queue
 ## DEV Instructions
-Install:
+- Install Backend:
 ```
 ./install.sh
 ```
-To run:
+- Configure config file (change config-example.py to "config.py")
+- To run:
 ```
 redis-server
 celery -A worker worker --loglevel=debug
@@ -29,6 +30,6 @@ curl localhost:5000/<task-id>
  * [x] NLP for suggesting jobs
  * [x] Email notifications
  * [x] API for task management 
- * [ ] Dockerfile for deployment
  * [ ] Front-end for task management
  * [ ] Front-end for users to upload resume, see suggested jobs
+ * [ ] Dockerfile for deployment
