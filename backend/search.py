@@ -55,7 +55,6 @@ def process(search_terms):
             all_posts = p.map(get_posts, links)
             unique_posts = set(all_posts) # ensure unique postings
             p.terminate()
-            print(unique_posts)
             joined_posts = '\n\n'.join([str(post) for post in unique_posts if post is not 'None'])
             MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts)
             LOGGER.info("Successfully processed listings")
