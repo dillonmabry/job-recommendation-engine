@@ -11,13 +11,13 @@ from logger import Logger
 FROM_EMAIL = getattr(config, 'FROM_EMAIL')
 TO_EMAIL = getattr(config, 'TO_EMAIL')
 SMTP_PASS = getattr(config, 'SMTP_PASS')
-__mailer = Mailer(FROM_EMAIL, TO_EMAIL, SMTP_PASS)
-__logger = logger = Logger("search").get()
+MAILER = Mailer(FROM_EMAIL, TO_EMAIL, SMTP_PASS)
+LOGGER = logger = Logger("search").get()
 
-BASE_URL = 'https://www.indeed.com'
-NUM_PAGES = 5
+BASE_URL = getattr(config, 'BASE_URL')
+NUM_PAGES = getattr(config, 'NUM_PAGES')
 POOL_SIZE = multiprocessing.cpu_count()-1
-DAYS_POSTED = 15
+DAYS_POSTED = getattr(config, 'DAYS_POSTED')
 
 # get/generate links to parse
 def get_links(base_url, n, search_terms):
@@ -45,7 +45,7 @@ def get_posts(url):
 
 def process(search_terms):
     try:
-        __logger.info("Starting web scrape...")
+        LOGGER.info("Starting web scrape...")
         start_time = time.time()
         # generate links to process
         links = get_links(BASE_URL, NUM_PAGES, search_terms)
@@ -53,12 +53,13 @@ def process(search_terms):
         # split into pool of threads to process
         with ThreadPool(POOL_SIZE) as p:
             all_posts = p.map(get_posts, links)
-            unique_posts = set(all_posts)
+            unique_posts = set(all_posts) # ensure unique postings
             p.terminate()
-            joined_posts = '\n\n'.join([str(x) for x in unique_posts])
-            __mailer.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts)
-            __logger.info("Successfully processed listings")
+            print(unique_posts)
+            joined_posts = '\n\n'.join([str(post) for post in unique_posts if post is not 'None'])
+            MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts)
+            LOGGER.info("Successfully processed listings")
             return True
     except Exception as e:
-        __logger.exception(str(e))
+        LOGGER.exception(str(e))
         raise e
