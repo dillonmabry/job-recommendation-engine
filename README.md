@@ -15,13 +15,13 @@ celery -A worker worker --loglevel=debug
 python3 app.py
 ```
 Send POST with doc/docx file (resume) for analyzing:
-`curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" localhost:5000/upload`
+`curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" localhost:5000/api/upload`
 Responses (Task queue):
 ```
-curl localhost:5000
+curl localhost:5000/api/tasks
 ``` 
 ```
-curl localhost:5000/<task-id>
+curl localhost:5000/api/task/<task-id>
 ```
 
 ## Frontend Instructions
