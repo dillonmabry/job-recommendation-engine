@@ -27,6 +27,7 @@ curl localhost:5000/<task-id>
 ## Frontend Instructions
 - Navigate to frontend
 ```
+npm install
 npm start
 ```
 - App should be running on http://localhost:3000
