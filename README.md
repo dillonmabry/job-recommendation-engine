@@ -2,7 +2,7 @@
 - Takes input from resume as doc/docx from potential job candidate
 - Scrapes Indeed for potential listings using NLP
 - Sends email as task in worker queue
-## DEV Instructions
+## Backend Instructions
 - Install Backend:
 ```
 ./install.sh
@@ -23,7 +23,16 @@ curl localhost:5000
 ```
 curl localhost:5000/<task-id>
 ```
-## PROD Instructions
+
+## Frontend Instructions
+- Navigate to frontend
+```
+npm install
+npm start
+```
+- App should be running on http://localhost:3000
+
+## Deployment Instructions
 *Dockerfile to be created soon
 
 ## TODO:
