@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
-// import axios from 'axios';
 import { Container, Button } from 'reactstrap'
 import { Link } from 'react-router-dom';
-import tasks from '../api/tasks'
+import API from '../api/api'
+
+const taskAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'task' })
 
 class TaskDetail extends Component {
-    
     constructor(props) {
         super(props);
         this.state = {
@@ -13,20 +13,9 @@ class TaskDetail extends Component {
         }
     }
     componentWillMount() {
-        this.setState({ details: this.getMeetup() })
-    }
-    getMeetup() {
-         let taskId = this.props.match.params.id;
-        // axios.get(`/api/tasks/${taskId}`)
-		// .then(response => {
-		// 	this.setState({details: response.data}, () =>
-		// 	{
-
-		// 	});
-		// })
-        // .catch(err => console.log(err));
-        // eslint-disable-next-line
-        return tasks.find(task => task.id == taskId);
+        taskAPI.endpoints.getOne({ id: this.props.match.params.id })
+			.then((res) => { this.setState({ details: res.data }) })
+			.catch((error) => { return error })
     }
     render() {
         return (
