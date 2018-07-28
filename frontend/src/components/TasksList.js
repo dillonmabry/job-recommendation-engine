@@ -3,7 +3,7 @@ import { Container, ListGroup } from 'reactstrap'
 import Task from './Task';
 import API from '../api/api'
 
-const tasksAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'tasks' })
+const tasksAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/tasks' })
 
 class TasksList extends Component {
 	constructor() {
@@ -14,7 +14,9 @@ class TasksList extends Component {
 	}
 	componentWillMount() {
 		tasksAPI.endpoints.getAll()
-			.then((res) => { this.setState({ tasks: res.data }) })
+			.then((res) => { 
+				this.setState({ tasks: res.data }) 
+			})
 			.catch((error) => { return error })
 	}
 	render() {

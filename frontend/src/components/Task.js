@@ -14,8 +14,8 @@ class Task extends Component {
         return (
           <ListGroupItem>
             <p>Task ID: {this.state.task.id}</p>
-            <p>Status: <Badge color={this.state.task.ready ? 'success' : 'danger'}>
-                    {this.state.task.ready.toString()}
+            <p>Status: <Badge color={this.state.task.done ? 'success' : 'danger'}>
+                    {this.state.task.done.toString()}
                 </Badge>
             </p>
             <Link to={`/task/${this.state.task.id}`}>
@@ -27,6 +27,6 @@ class Task extends Component {
 }
 Task.propTypes  = {
     id: PropTypes.number,
-    ready: PropTypes.bool
+    done: PropTypes.bool
 }
 export default Task;

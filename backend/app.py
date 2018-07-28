@@ -1,10 +1,12 @@
 from flask import Flask, request, jsonify
 from nlp import NLP
 from worker import scrape_and_mail
+from flask_cors import CORS
 
 ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 app = Flask(__name__)
+CORS(app, resources={r"/api/*": {"origins": "*"}})
 NLP = NLP()
 TASKS = {} # celery tasks
 
@@ -12,7 +14,7 @@ def allowed_file(filename):
     return '.' in filename and \
            filename.rsplit('.', 1)[1].lower() in ALLOWED_EXTENSIONS
 
-@app.route('/upload', methods=['PUT'])
+@app.route('/api/upload', methods=['PUT'])
 def upload_file():
     # check if the post request has the file part
     if 'file' not in request.files:
@@ -28,16 +30,16 @@ def upload_file():
         response = {'result': task_id}
         return jsonify(response)
 
-@app.route('/', methods=['GET'])
+@app.route('/api/tasks', methods=['GET'])
 def list_tasks():
-    tasks = {task_id: {'ready': task.ready()}
-             for task_id, task in TASKS.items()}
+    tasks = [{'id': task_id, 'done': task.ready()}
+             for task_id, task in TASKS.items()]
     return jsonify(tasks)
 
-@app.route('/<int:task_id>', methods=['GET'])
+@app.route('/api/task/<int:task_id>', methods=['GET'])
 def get_task(task_id):
     task = TASKS[task_id]
-    response = {'task_id': task_id}
+    response = {'id': task_id}
     if task.ready():
         response['done'] = task.get()
     return jsonify(response)

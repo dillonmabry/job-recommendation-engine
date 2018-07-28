@@ -10,7 +10,6 @@ export default class API {
     createEndPoints({ name }) {
         var endpoints = {}
         const resourceUrl = `${this.url}/${name}`
-        console.log(resourceUrl)
         endpoints.getAll = () => axios.get(resourceUrl)
         endpoints.getOne = ({ id }) => axios.get(`${resourceUrl}/${id}`)
 
@@ -18,20 +17,3 @@ export default class API {
         return endpoints
     }
 }
-
-// Test data format
-// const tasks = [
-//     {
-//         "id": 0,
-//         "ready": true
-//     },
-//     {
-//         "id": 1,
-//         "ready": true
-//     },
-//     {
-//         "id": 2,
-//         "ready": false
-//     },
-// ]
-// export default tasks
