@@ -12,7 +12,7 @@
 ```
 redis-server
 celery -A worker worker --loglevel=debug
-python3 app.py
+python app.py
 ```
 Send POST with doc/docx file (resume) for analyzing:
 `curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" localhost:5000/api/upload`
