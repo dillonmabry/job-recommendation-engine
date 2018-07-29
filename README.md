@@ -42,3 +42,5 @@ npm start
  * [ ] Front-end for task management
  * [ ] Front-end for users to upload resume, see suggested jobs
  * [ ] Dockerfile for deployment
+ * [ ] Improve job suggestion scraping
+ * [ ] Add authentication for users and admins to see tasks
