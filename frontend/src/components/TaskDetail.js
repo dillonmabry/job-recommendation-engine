@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import PropTypes from 'prop-types';
 import { Container, Button } from 'reactstrap'
 import { Link } from 'react-router-dom';
 import API from '../api/api'
@@ -29,7 +28,7 @@ class TaskDetail extends Component {
                     loading: false
                 }))
             })
-			.catch((error) => { return error })
+			.catch((error) => { console.log(error) })
     }
     render() {
         const taskItem = (
@@ -52,9 +51,5 @@ class TaskDetail extends Component {
           </Container>
         )
     }
-}
-TaskDetail.propTypes  = {
-    id: PropTypes.number,
-    done: PropTypes.bool
 }
 export default TaskDetail;

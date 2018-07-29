@@ -29,7 +29,7 @@ export default class NavbarMenu extends React.Component {
                 <NavLink href="/tasks">Tasks</NavLink>
               </NavItem>
               <NavItem>
-                <NavLink href="#">Upload</NavLink>
+                <NavLink href="/upload">Upload</NavLink>
               </NavItem>
             </Nav>
           </Collapse>

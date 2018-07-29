@@ -18,7 +18,7 @@ class TasksList extends Component {
 			.then((res) => { 
 				this.setState({ tasks: res.data, loading: false }) 
 			})
-			.catch((error) => { return error })
+			.catch((error) => { console.log(error) })
 	}
 	render() {
 		const taskItems = this.state.tasks.map((task) => 

@@ -12,8 +12,13 @@ export default class API {
         const resourceUrl = `${this.url}/${name}`
         endpoints.getAll = () => axios.get(resourceUrl)
         endpoints.getOne = ({ id }) => axios.get(`${resourceUrl}/${id}`)
-
-        //add more endpoints
+        endpoints.putFile = ({ formData }) => axios.put(resourceUrl, formData, {
+            headers: {
+                'Content-Type': 'multipart/form-data'
+            }
+          }
+        )
+        //add more endpoints if needed
         return endpoints
     }
 }

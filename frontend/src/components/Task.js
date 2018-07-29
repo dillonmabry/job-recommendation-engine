@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types';
 import { ListGroupItem, Badge, Button } from 'reactstrap'
 
 class Task extends Component {
@@ -24,9 +23,5 @@ class Task extends Component {
           </ListGroupItem>
         )
     }
-}
-Task.propTypes  = {
-    id: PropTypes.number,
-    done: PropTypes.bool
 }
 export default Task;

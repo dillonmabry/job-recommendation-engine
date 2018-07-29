@@ -1,4 +1,4 @@
-from flask import Flask, request, jsonify
+from flask import Flask, request, jsonify, Response
 from nlp import NLP
 from worker import scrape_and_mail
 from flask_cors import CORS
@@ -18,16 +18,16 @@ def allowed_file(filename):
 def upload_file():
     # check if the post request has the file part
     if 'file' not in request.files:
-        return 'No file present'
+        return Response("No file present", status=500, mimetype="application/json")
     file = request.files['file']
     if file.filename == '':
-        return 'No selected file'
+        return Response("No filename detected", status=500, mimetype="application/json")
     if file and allowed_file(file.filename):
         keywords = NLP.extract_keywords(file)
         # mail queue for tasks
         task_id = len(TASKS)
         TASKS[task_id] = scrape_and_mail.delay(keywords)
-        response = {'result': task_id}
+        response = {'id': task_id, 'keywords': keywords}
         return jsonify(response)
 
 @app.route('/api/tasks', methods=['GET'])
