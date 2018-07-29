@@ -36,7 +36,11 @@ class TaskDetail extends Component {
             <div>
                 <h2>Task ID: {this.state.details.id}</h2>
                 <h2 className="collection-item">
-                    Status: {this.state.details.done.toString()}
+                    Status: {
+                        this.state.details.done ? 
+                        this.state.details.done.toString() : 
+                        'Pending'
+                    }
                 </h2>
             </div>
         )
