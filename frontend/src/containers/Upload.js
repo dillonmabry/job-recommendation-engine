@@ -1,16 +1,14 @@
 import React, { Component } from 'react';
 import { 
     Container, 
-    Button, 
     Form, 
     FormGroup, 
     Label, 
     Input, 
     ListGroup, 
-    ListGroupItem,
-    Row 
+    ListGroupItem
 } from 'reactstrap'
-import { Link } from 'react-router-dom';
+import Header from '../components/Header'
 import API from '../api/api'
 
 const taskAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/upload' })
@@ -51,11 +49,7 @@ class Upload extends Component {
         })
         return (
           <Container>
-            <Row>
-                <Link to="/"><Button color="light">Back</Button></Link>
-                &nbsp;&nbsp;<h2>Job Suggestions Email</h2>
-            </Row>
-            <hr/>
+            <Header title={"Resume Upload"} back={""} />
             <Form>
                 <FormGroup>
                     <Label for="file">Resume in .doc/.docx</Label>

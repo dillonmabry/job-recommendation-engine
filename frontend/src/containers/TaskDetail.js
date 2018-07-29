@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
-import { Container, Button } from 'reactstrap'
-import { Link } from 'react-router-dom';
+import { Container } from 'reactstrap'
+import Header from '../components/Header'
 import API from '../api/api'
+
 
 const taskAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/task' })
 
@@ -45,8 +46,7 @@ class TaskDetail extends Component {
         )
         return (
           <Container>
-            <Link to="/tasks"><Button color="light">Back</Button></Link>
-            <hr />
+            <Header title={"Task Detail"} back={"tasks"} />
             { this.state.loading ? '' : taskItem }
           </Container>
         )

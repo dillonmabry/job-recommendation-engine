@@ -1,8 +1,8 @@
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
-import TasksList from './TasksList';
-import TaskDetail from './TaskDetail'
-import Upload from './Upload'
+import TasksList from '../containers/TasksList';
+import TaskDetail from '../containers/TaskDetail'
+import Upload from '../containers/Upload'
 
 const Main = () => (
   <main>
