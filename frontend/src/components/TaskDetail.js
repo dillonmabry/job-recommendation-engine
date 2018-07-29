@@ -10,9 +10,10 @@ class TaskDetail extends Component {
     constructor(props) {
         super(props);
         this.state = {
+            loading: true,
             details: {
-                id: -99,
-                done: false
+                id: '',
+                done: ''
             }
         }
     }
@@ -24,18 +25,26 @@ class TaskDetail extends Component {
                         ...prevState.details,
                         id: res.data.id,
                         done: res.data.done
-                    }
+                    },
+                    loading: false
                 }))
             })
 			.catch((error) => { return error })
     }
     render() {
+        const taskItem = (
+            <div>
+                <h2>Task ID: {this.state.details.id}</h2>
+                <h2 className="collection-item">
+                    Status: {this.state.details.done.toString()}
+                </h2>
+            </div>
+        )
         return (
           <Container>
             <Link to="/tasks"><Button color="secondary">Back</Button></Link>
             <hr />
-            <h2>Task ID: {this.state.details.id}</h2>
-            <h2 className="collection-item">Status: {this.state.details.done.toString()}</h2>
+            { this.state.loading ? '' : taskItem }
           </Container>
         )
     }

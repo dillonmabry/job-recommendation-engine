@@ -9,13 +9,14 @@ class TasksList extends Component {
 	constructor() {
 		super();
 		this.state = {
+			loading: true,
 			tasks: []
 		}
 	}
 	componentWillMount() {
 		tasksAPI.endpoints.getAll()
 			.then((res) => { 
-				this.setState({ tasks: res.data }) 
+				this.setState({ tasks: res.data, loading: false }) 
 			})
 			.catch((error) => { return error })
 	}
@@ -30,7 +31,7 @@ class TasksList extends Component {
 		  <Container>
 		    <h2>Current Tasks</h2>
 		    <ListGroup>
-		    {taskItems}
+		    { this.state.loading ? '' : taskItems }
 		    </ListGroup>
 		  </Container>
 		)
