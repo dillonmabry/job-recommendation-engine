@@ -13,7 +13,7 @@ class TasksList extends Component {
 			tasks: []
 		}
 	}
-	componentWillMount() {
+	componentDidMount() {
 		tasksAPI.endpoints.getAll()
 			.then((res) => { 
 				this.setState({ tasks: res.data, loading: false }) 

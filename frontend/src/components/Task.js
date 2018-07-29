@@ -12,14 +12,14 @@ class Task extends Component {
     }
     render() {
         return (
-          <ListGroupItem>
+          <ListGroupItem color="light">
             <p>Task ID: {this.state.task.id}</p>
             <p>Status: <Badge color={this.state.task.done ? 'success' : 'danger'}>
                     {this.state.task.done.toString()}
                 </Badge>
             </p>
             <Link to={`/task/${this.state.task.id}`}>
-                <Button color="secondary">View Details</Button>
+                <Button color="primary">View Details</Button>
             </Link>
           </ListGroupItem>
         )

@@ -17,7 +17,7 @@ class TaskDetail extends Component {
             }
         }
     }
-    componentWillMount() {
+    componentDidMount() {
         taskAPI.endpoints.getOne({ id: this.props.match.params.id })
 			.then((res) => { 
                 this.setState(prevState => ({
@@ -42,7 +42,7 @@ class TaskDetail extends Component {
         )
         return (
           <Container>
-            <Link to="/tasks"><Button color="secondary">Back</Button></Link>
+            <Link to="/tasks"><Button color="light">Back</Button></Link>
             <hr />
             { this.state.loading ? '' : taskItem }
           </Container>
