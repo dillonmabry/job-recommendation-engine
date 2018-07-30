@@ -4,7 +4,7 @@ import Header from '../components/Header'
 import API from '../api/api'
 
 
-const taskAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/task' })
+const taskAPI = new API({ url: process.env.REACT_APP_FLASK_API_URL, name: 'api/task' })
 
 class TaskDetail extends Component {
     constructor(props) {

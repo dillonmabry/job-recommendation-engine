@@ -11,7 +11,7 @@ import {
 import Header from '../components/Header'
 import API from '../api/api'
 
-const taskAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/upload' })
+const taskAPI = new API({ url: process.env.REACT_APP_FLASK_API_URL, name: 'api/upload' })
 
 class Upload extends Component {
     constructor() {
