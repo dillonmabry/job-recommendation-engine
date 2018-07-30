@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Container, ListGroup } from 'reactstrap'
 import Task from './Task';
+import Header from '../components/Header'
 import API from '../api/api'
 
 const tasksAPI = new API({ url: process.env.REACT_APP_API_URL, name: 'api/tasks' })
@@ -29,7 +30,7 @@ class TasksList extends Component {
 		})
 		return (
 		  <Container>
-		    <h2>Current Tasks</h2>
+		     <Header title={"Current Tasks"} back={""} />
 		    <ListGroup>
 		    { this.state.loading ? '' : taskItems }
 		    </ListGroup>

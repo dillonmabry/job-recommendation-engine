@@ -4,6 +4,7 @@ body {
   font-family: sans-serif; 
 } 
 main { margin-top: 20px; }
+
 /*!
  * Bootswatch v4.1.3
  * Homepage: https://bootswatch.com
@@ -3393,7 +3394,6 @@ main { margin-top: 20px; }
    position: relative;
    display: -webkit-inline-box;
    display: -ms-inline-flexbox;
-   display: inline-flex;
    vertical-align: middle;
  }
  

@@ -18,7 +18,7 @@ class Task extends Component {
                 </Badge>
             </p>
             <Link to={`/task/${this.state.task.id}`}>
-                <Button color="primary">View Details</Button>
+                <Button color="secondary">View Details</Button>
             </Link>
           </ListGroupItem>
         )

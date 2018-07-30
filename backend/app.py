@@ -38,6 +38,8 @@ def list_tasks():
 
 @app.route('/api/task/<int:task_id>', methods=['GET'])
 def get_task(task_id):
+    if task_id not in TASKS:
+        return Response("No task found with id specified", status=404, mimetype="application/json")
     task = TASKS[task_id]
     response = {'id': task_id}
     if task.ready():
