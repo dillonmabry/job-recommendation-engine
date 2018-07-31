@@ -3,6 +3,7 @@
 sudo apt-get update -y
 sudo apt-get install redis-server -y
 pip3 install Flask
+pip3 install beautifulsoup4
 pip3 install nltk
 python3 -c "import nltk; nltk.download('punkt')"
 pip3 install lxml
