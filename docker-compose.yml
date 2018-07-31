@@ -1,0 +1,38 @@
+version: '2'
+
+services:
+  redis:
+    image: 'redis:3.0-alpine'
+    command: redis-server
+    volumes:
+      - 'redis:/data'
+    ports:
+      - '6379:6379'
+
+  flask:
+    entrypoint: python3
+    build: ./backend
+    command: app.py
+    environment:
+      PYTHONUNBUFFERED: 'true'
+    volumes:
+      - '.:/searchapp'
+    ports:
+      - '5000:5000'
+
+  celery:
+    entrypoint: celery
+    build: ./backend
+    command: -A worker worker --loglevel=debug
+    volumes:
+      - '.:/searchapp'
+
+  webapp:
+    build: ./frontend
+    ports:
+     - 3000:80
+    volumes:
+     - '.:/searchapp'
+
+volumes:
+  redis:

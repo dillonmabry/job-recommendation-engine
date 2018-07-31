@@ -16,7 +16,7 @@ LOGGER = logger = Logger("search").get()
 
 BASE_URL = getattr(config, 'BASE_URL')
 NUM_PAGES = getattr(config, 'NUM_PAGES')
-POOL_SIZE = multiprocessing.cpu_count()-1
+POOL_SIZE = multiprocessing.cpu_count()
 DAYS_POSTED = getattr(config, 'DAYS_POSTED')
 
 # get/generate links to parse
