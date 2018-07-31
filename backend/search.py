@@ -46,10 +46,8 @@ def get_posts(url):
 def process(search_terms):
     try:
         LOGGER.info("Starting web scrape...")
-        start_time = time.time()
         # generate links to process
         links = get_links(BASE_URL, NUM_PAGES, search_terms)
-
         # split into pool of threads to process
         with ThreadPool(POOL_SIZE) as p:
             all_posts = p.map(get_posts, links)
