@@ -40,7 +40,7 @@ npm start
  * [x] Email notifications
  * [x] API for task management 
  * [X] Front-end for task management
- * [ ] Front-end for users to upload resume, receive email for suggested jobs
+ * [X] Front-end for users to upload resume, receive email for suggested jobs
  * [X] Docker compose for deployment (multi-container)
  * [ ] Add authentication for users and admins to see tasks
  * [ ] Integrate Redux
