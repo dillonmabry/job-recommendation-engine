@@ -15,9 +15,9 @@ celery -A worker worker --loglevel=debug
 python app.py
 ```
 Send POST with doc/docx file (resume) for analyzing:
-```curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" -F "email=rapid.dev.solutions@gmail.com" localh
+`curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" -F "email=rapid.dev.solutions@gmail.com" localh
 ost:5000/api/upload
-```
+`
 Responses (Task queue):
 ```
 curl localhost:5000/api/tasks
