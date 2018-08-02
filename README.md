@@ -33,7 +33,11 @@ npm start
 - App should be running on http://localhost:3000
 
 ## Deployment Instructions
-*Dockerfile to be created soon
+- Supports docker-compose containers
+```
+docker-compose up --build
+```
+- When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
 
 ## TODO:
  * [x] NLP for suggesting jobs
