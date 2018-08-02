@@ -41,7 +41,7 @@ npm start
  * [x] API for task management 
  * [X] Front-end for task management
  * [ ] Front-end for users to upload resume, receive email for suggested jobs
- * [ ] Dockerfile for deployment (multi-stage)
+ * [X] Docker compose for deployment (multi-container)
  * [ ] Add authentication for users and admins to see tasks
  * [ ] Integrate Redux
  * [ ] Integrate web sockets for real time task management
