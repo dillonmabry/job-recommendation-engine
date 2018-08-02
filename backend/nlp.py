@@ -23,7 +23,7 @@ class NLP(object):
             text = ' '.join(filtered_text)
 
             # process full text and extract key words
-            keywords = r.extract_keywords_from_text(text)
+            r.extract_keywords_from_text(text)
             ranked = r.get_ranked_phrases_with_scores()
             # [(score, list of words)]
             ranked = [item[1] for item in ranked]
