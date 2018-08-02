@@ -10,8 +10,8 @@ REDIS_BROKER_URL = getattr(config, 'REDIS_BROKER_URL')
 app = Celery(__name__, backend='rpc://', broker=REDIS_BROKER_URL)
 
 @app.task
-def scrape_and_mail(keywords):
+def scrape_and_mail(keywords, email):
     try:
-        return process(keywords)
+        return process(keywords, email)
     except Exception:
         return Exception

@@ -8,10 +8,9 @@ import config
 from mail import Mailer
 from logger import Logger
 
-FROM_EMAIL = getattr(config, 'FROM_EMAIL')
-TO_EMAIL = getattr(config, 'TO_EMAIL')
+SMTP_EMAIL = getattr(config, 'SMTP_EMAIL')
 SMTP_PASS = getattr(config, 'SMTP_PASS')
-MAILER = Mailer(FROM_EMAIL, TO_EMAIL, SMTP_PASS)
+MAILER = Mailer(SMTP_EMAIL, SMTP_PASS)
 LOGGER = logger = Logger("search").get()
 
 BASE_URL = getattr(config, 'BASE_URL')
@@ -43,7 +42,7 @@ def get_posts(url):
                     if ahref is not None:
                         return BASE_URL + ahref['href']
 
-def process(search_terms):
+def process(search_terms, to_email):
     try:
         LOGGER.info("Starting web scrape...")
         # generate links to process
@@ -54,7 +53,7 @@ def process(search_terms):
             unique_posts = set(all_posts) # ensure unique postings
             p.terminate()
             joined_posts = '\n\n'.join([str(post) for post in unique_posts if post is not None])
-            MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts)
+            MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()),  joined_posts, to_email)
             LOGGER.info("Successfully processed listings")
             return True
     except Exception as e:
