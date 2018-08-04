@@ -19,7 +19,7 @@ class Mailer(object):
         msg['To'] = toaddr
         msg['Subject'] = subject
 
-        msg.attach(MIMEText(body, 'plain'))
+        msg.attach(MIMEText(body, 'html'))
 
         try:
             server = smtplib.SMTP_SSL('smtp.gmail.com:465')
