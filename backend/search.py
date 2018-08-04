@@ -56,7 +56,7 @@ def create_body(posts, to_mail):
         row = BeautifulSoup('''
                             <tr>
                                 <td><p class="listing">{}</p></td>
-                                <td><a class="listingLink" href="{}" target="_blank">View Listing</a></td>
+                                <td><a class="listingLink" href="{}" target="_blank">View</a></td>
                             </tr> 
                         '''.format(post_dict.get('title', None), post_dict.get('url', None)), "lxml")
         rowContents = row.html.body.tr
