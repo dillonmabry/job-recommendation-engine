@@ -46,7 +46,7 @@ def get_posts(url):
 def create_body(posts, to_mail):
     LOGGER.info("Begin mail creation...")
     f = codecs.open(os.path.join(MAIL_TEMPLATES + 'job_suggestions.html'), 'r')
-    soup = BeautifulSoup(f.read())
+    soup = BeautifulSoup(f.read(), "lxml")
     # To email response
     mailTo = soup.find("b", {"id": "email"})
     mailTo.insert(0, str(to_mail.split("@")[0]))
@@ -58,7 +58,7 @@ def create_body(posts, to_mail):
                                 <td><p class="listing">{}</p></td>
                                 <td><a class="listingLink" href="{}" target="_blank">View Listing</a></td>
                             </tr> 
-                        '''.format(post_dict.get('title', None), post_dict.get('url', None)))
+                        '''.format(post_dict.get('title', None), post_dict.get('url', None)), "lxml")
         rowContents = row.html.body.tr
         tableBody.insert(0, rowContents)
     
