@@ -184,5 +184,9 @@ typings/
 # Redis dumps
 dump.rdb
 
-# Excludes
+# Includes forced
 !config-example.py
+
+# Certs
+*.crt
+*.key

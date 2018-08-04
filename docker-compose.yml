@@ -8,6 +8,8 @@ services:
       - 'redis:/data'
     ports:
       - '6379:6379'
+    networks:
+      - proxy
 
   flask:
     entrypoint: python3
@@ -18,7 +20,9 @@ services:
     volumes:
       - '.:/searchapp'
     ports:
-      - '5000:5000'
+      - '12344:12344'
+    networks:
+      - proxy
 
   celery:
     entrypoint: celery
@@ -26,13 +30,40 @@ services:
     command: -A worker worker --loglevel=debug
     volumes:
       - '.:/searchapp'
-
-  webapp:
-    build: ./frontend
+    networks:
+      - proxy
+  
+  traefik:
+    image: traefik
+    command: --docker
     ports:
-     - 3000:80
+      - 80:80
+      - 443:443
+    networks:
+      - proxy
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - /opt/traefik/traefik.toml:/traefik.toml
+      - /opt/traefik/certs/:/certs/
+    container_name: traefik
+
+  nginx:
+    build: ./frontend
     volumes:
      - '.:/searchapp'
+    networks:
+     - proxy
+    labels:
+      - traefik.port=80
+      - traefik.backend=nginx
+      - traefik.frontend.rule=Host:localhost
+      - traefik.frontend.passHostHeader=true
+      - traefik.enable=true
+      - traefik.docker.network=proxy
+
+networks:
+  proxy:
+    external: true
 
 volumes:
   redis:

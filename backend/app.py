@@ -3,6 +3,7 @@ from nlp import NLP
 from worker import scrape_and_mail
 from flask_cors import CORS
 
+SSL_CONTEXT = ('certs/searchapp.local.crt', 'certs/searchapp.local.key')
 ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 app = Flask(__name__)
@@ -50,4 +51,4 @@ def get_task(task_id):
     return jsonify(response)
 
 if __name__ == '__main__':
-   app.run(debug=True, host='0.0.0.0')
+   app.run(debug=True, host='0.0.0.0', ssl_context=SSL_CONTEXT, port=12344)
