@@ -41,6 +41,16 @@ docker-compose up --build
 ```
 - When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
 
+## SSL Deployment Instructions
+```
+./install-certs.sh
+```
+- Ensure certs are created for backend/ and local /opt/traefik directories
+- Ensure correct config information
+```
+docker-compose up --build
+```
+
 ## TODO:
  * [x] NLP for suggesting jobs
  * [x] Email notifications
