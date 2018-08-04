@@ -16,8 +16,7 @@ python app.py
 ```
 Send POST with doc/docx file (resume) for analyzing:
 ```
-curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" -F "email=rapid.dev.solutions@gmail.com" localh
-ost:5000/api/upload
+curl -i -X PUT -H "Content-Type: multipart/form-data" -F "file=@sample_resume.docx" -F "email=rapid.dev.solutions@gmail.com" localhost:5000/api/upload
 ```
 Responses (Task queue):
 ```
