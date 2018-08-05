@@ -10,4 +10,4 @@ chmod 644 /opt/traefik/certs/searchapp.local.crt
 chmod 600 /opt/traefik/certs/searchapp.local.key
 
 cp /opt/traefik/certs -r backend/
-cp traefik.toml /opt/traefik/
+cp traefik/traefik.toml /opt/traefik/
