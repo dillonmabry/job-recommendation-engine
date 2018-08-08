@@ -6,7 +6,7 @@ import codecs
 import os
 import multiprocessing
 from multiprocessing.pool import ThreadPool
-import config 
+import config
 from mail import Mailer
 from logger import Logger
 
@@ -61,7 +61,7 @@ def create_body(posts, to_mail):
                         '''.format(post_dict.get('title', None), post_dict.get('url', None)), "lxml")
         rowContents = row.html.body.tr
         tableBody.insert(0, rowContents)
-    
+
     LOGGER.info("Created mail body...")
     return soup
 
@@ -77,7 +77,7 @@ def process(search_terms, to_email):
             cleaned_posts = list(post_dict for post_dict in all_posts if post_dict is not None)
             unique_posts = list(values for key, values in enumerate(cleaned_posts) if values not in cleaned_posts[key + 1:])
             mail_body = create_body(unique_posts, to_email)
-            MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()), mail_body, to_email)
+            MAILER.send_mail("Job Postings Based on Your Resume", mail_body, to_email)
             LOGGER.info("Successfully processed listings")
             return True
     except Exception as e:

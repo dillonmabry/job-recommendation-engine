@@ -12,8 +12,8 @@ defaultEntryPoints = ["https","http"]
   address = ":443"
   [entryPoints.https.tls]
     [[entryPoints.https.tls.certificates]]
-      certFile = "certs/searchapp.local.crt"
-      keyFile = "certs/searchapp.local.key"
+      certFile = "certs/localhost.crt"
+      keyFile = "certs/localhost.key"
 
 [retry]
 

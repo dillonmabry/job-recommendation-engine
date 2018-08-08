@@ -3,7 +3,7 @@ from nlp import NLP
 from worker import scrape_and_mail
 from flask_cors import CORS
 
-SSL_CONTEXT = ('certs/searchapp.local.crt', 'certs/searchapp.local.key')
+SSL_CONTEXT = ('certs/localhost.crt', 'certs/localhost.key')
 ALLOWED_EXTENSIONS = set(['docx', 'doc'])
 
 app = Flask(__name__)
