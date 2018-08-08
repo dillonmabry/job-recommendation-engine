@@ -55,7 +55,6 @@ services:
     labels:
       - traefik.port=80
       - traefik.backend=nginx
-      - traefik.frontend.rule=Host:localhost
       - traefik.frontend.passHostHeader=true
       - traefik.enable=true
       - traefik.docker.network=proxy
