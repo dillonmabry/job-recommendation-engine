@@ -3,6 +3,22 @@
 - Scrapes Indeed for potential listings using NLP
 - Sends email as task in worker queue
 ## Backend Instructions
+- Configure environment settings in a /backend/.env file
+```
+cd /backend
+touch .env
+```
+- Add the following to your environment configuration:
+```
+SMTP_EMAIL = "from_email@mail.com"
+SMTP_PASS = "smtp_pass"
+MAIL_TEMPLATES = "util/mail_templates/"
+LOGGING_DIR="log"
+BASE_URL = "https://www.indeed.com"
+NUM_PAGES = 5
+DAYS_POSTED = 15
+REDIS_BROKER_URL = "redis://localhost:6379/"
+```
 - Install Backend:
 ```
 ./install.sh
