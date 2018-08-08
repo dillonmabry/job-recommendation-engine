@@ -1,6 +1,4 @@
 import requests
-import datetime
-import time
 from bs4 import BeautifulSoup
 import codecs
 import os
@@ -77,7 +75,7 @@ def process(search_terms, to_email):
             cleaned_posts = list(post_dict for post_dict in all_posts if post_dict is not None)
             unique_posts = list(values for key, values in enumerate(cleaned_posts) if values not in cleaned_posts[key + 1:])
             mail_body = create_body(unique_posts, to_email)
-            MAILER.send_mail("JOB POSTINGS AS OF "+str(datetime.datetime.now()), mail_body, to_email)
+            MAILER.send_mail("Job Postings Based on Your Resume", mail_body, to_email)
             LOGGER.info("Successfully processed listings")
             return True
     except Exception as e:

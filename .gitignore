@@ -177,10 +177,6 @@ typings/
 # Serverless directories
 .serverless
 
-# Custom excludes
-# Config settings
-*config.py
-
 # Redis dumps
 dump.rdb
 

@@ -13,3 +13,4 @@ pip3 install redis
 pip3 install celery
 pip3 install httpie 
 pip3 install flask-cors # For later use with React
+pip3 install python-dotenv
