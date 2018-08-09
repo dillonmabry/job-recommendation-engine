@@ -10,20 +10,19 @@ touch .env
 ```
 - Add the following to your environment configuration:
 ```
-SMTP_EMAIL = "from_email@mail.com"
-SMTP_PASS = "smtp_pass"
-MAIL_TEMPLATES = "util/mail_templates/"
-LOGGING_DIR="log"
-BASE_URL = "https://www.indeed.com"
-NUM_PAGES = 5
-DAYS_POSTED = 15
-REDIS_BROKER_URL = "redis://localhost:6379/"
+SMTP_EMAIL=from_email@mail.com
+SMTP_PASS=smtp_pass
+MAIL_TEMPLATES=util/mail_templates/
+LOGGING_DIR=log
+BASE_URL=https://www.indeed.com
+NUM_PAGES=5
+DAYS_POSTED=15
+REDIS_BROKER_URL=redis://localhost:6379/
 ```
 - Install Backend:
 ```
 ./install.sh
 ```
-- Configure config file (change config-example.py to "config.py")
 - To run:
 ```
 redis-server
@@ -51,7 +50,19 @@ npm start
 - App should be running on http://localhost:3000
 
 ## Deployment Instructions
-- Supports docker-compose containers
+- Set .env for compose project name
+```
+touch .env
+```
+- Set COMPOSE_PROJECT_NAME
+```
+COMPOSE_PROJECT_NAME=searchapp
+```
+- Set redis queue name in backend/.env
+```
+REDIS_BROKER_URL=redis://searchapp_redis_1:6379/
+```
+- Start docker-compose
 ```
 docker-compose up --build
 ```
