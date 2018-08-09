@@ -15,9 +15,9 @@ MAILER = Mailer(SMTP_EMAIL, SMTP_PASS)
 LOGGER = logger = Logger("search").get()
 
 BASE_URL = getattr(config, 'BASE_URL')
-NUM_PAGES = getattr(config, 'NUM_PAGES')
+NUM_PAGES = int(getattr(config, 'NUM_PAGES'))
 POOL_SIZE = multiprocessing.cpu_count()
-DAYS_POSTED = getattr(config, 'DAYS_POSTED')
+DAYS_POSTED = int(getattr(config, 'DAYS_POSTED'))
 
 def get_links(base_url, n, search_terms):
     links = []
