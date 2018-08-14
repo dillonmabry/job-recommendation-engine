@@ -56,6 +56,13 @@ def get_posts(url):
                         return { 'title': ahref['title'], 'url': BASE_URL + ahref['href'] }
 
 def postings_body(posts, to_mail):
+    """
+    Method to create email body from postings gathered by scrape
+
+    Args:
+        posts: the cleaned/filtered posts ready to send via email
+        to_mail: the mail recipient to be used for identifying the user, more friendly response
+    """
     LOGGER.info("Begin mail creation...")
     template = codecs.open(os.path.join(MAIL_TEMPLATES + 'job_suggestions.html'), 'r')
     soup = BeautifulSoup(template.read(), "lxml")
