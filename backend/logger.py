@@ -3,7 +3,13 @@ import logging
 import config
 
 class Logger(object):
+    """
+    Class to setup and utilize basic logging
 
+    Args:
+        self
+        name: The name of the class utilizing logging
+    """
     def __init__(self, name):
         name = name.replace('.log','')
         logger = logging.getLogger('log_namespace.%s' % name)
@@ -19,5 +25,11 @@ class Logger(object):
             logger.addHandler(handler)
         self._logger = logger
 
+    """
+    Method to return an instance of the logger
+
+    Args:
+        self
+    """
     def get(self):
         return self._logger

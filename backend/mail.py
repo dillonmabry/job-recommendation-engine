@@ -5,13 +5,29 @@ from logger import Logger
 import datetime
 
 class Mailer(object):
+    """
+    Main class to setup and perform mailing operations
 
+    Args:
+        self
+        from_mail: the SMTP from_mail setting
+        smtp_pass: the SMTP credentials
+    """
     def __init__(self, from_mail, smtp_pass):
         self.from_mail = from_mail
         self.smtp_pass = smtp_pass
         self.logger = Logger(self.__class__.__name__).get()
 
     def send_mail(self, subject, body, to_email):
+        """
+        Method to send an email
+
+        Args:
+            self
+            subject: the subject of the mail
+            body: the body of the email, MIMEType as html
+            to_email: the email recipient
+        """
         fromaddr = self.from_mail
         toaddr = to_email
         msg = MIMEMultipart()

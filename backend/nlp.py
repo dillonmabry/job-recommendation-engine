@@ -5,11 +5,23 @@ from logger import Logger
 r = Rake()
 
 class NLP(object):
+    """
+    Main class to perform NLP specific operations including rake_nltk to extract keywords
+
+    Args:
+        self
+    """
 
     def __init__(self):
         self.logger = Logger(self.__class__.__name__).get()
 
     def extract_keywords(self, file):
+        """
+        Method to extract keywords from the given file. File must be of word doc type (doc, dox).
+
+        Args:
+            file: the file in doc/docx needed to process keywords
+        """
         try:
             self.logger.info('Processing file for keyword extraction')
             # process Word doc
