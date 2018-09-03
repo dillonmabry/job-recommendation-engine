@@ -1,5 +1,5 @@
 # Job Recommendation Engine (RPI Edition)
-** This development branch is for testing integration with Raspberry Pi based deployment setup **
+**This development branch is for testing integration with Raspberry Pi based deployment setup**
 - Takes input from resume as doc/docx from potential job candidate
 - Scrapes Indeed for potential listings using NLP
 - Sends email as task in worker queue
