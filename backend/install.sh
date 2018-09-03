@@ -1,7 +1,7 @@
 #!/bin/bash
 # environment requirements: *nix, python3, pip3
-sudo apt-get update -y
-sudo apt-get install redis-server -y
+apt-get update -y
+apt-get install redis-server -y
 pip3 install Flask
 pip3 install beautifulsoup4
 pip3 install nltk

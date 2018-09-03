@@ -1,6 +1,6 @@
-FROM python:3.6-slim-stretch
+FROM ubuntu:latest
 RUN apt-get update -y
-RUN apt-get install -y python3 python-pip-whl python3-pip build-essential libxml2
+RUN apt-get install -y python3 python-pip-whl python3-pip build-essential python3-lxml
 COPY . /app
 WORKDIR /app
 RUN ./install.sh

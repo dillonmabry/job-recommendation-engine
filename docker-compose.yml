@@ -2,7 +2,7 @@ version: '2'
 
 services:
   redis:
-    image: 'redis:3.0-alpine'
+    image: 'arm32v7/redis'
     command: redis-server
     volumes:
       - 'redis:/data'
