@@ -1,8 +1,5 @@
 # Job Recommendation Engine (RPI Edition)
 **This development branch is for testing integration with Raspberry Pi based deployment setup**
-- Takes input from resume as doc/docx from potential job candidate
-- Scrapes Indeed for potential listings using NLP
-- Sends email as task in worker queue
 ## Backend Instructions
 - Configure environment settings in a /backend/.env file
 ```
@@ -68,14 +65,3 @@ REDIS_BROKER_URL=redis://searchapp_redis_1:6379/
 docker-compose up --build
 ```
 - When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
-
-## TODO:
- * [x] NLP for suggesting jobs
- * [x] Email notifications
- * [x] API for task management 
- * [X] Front-end for task management
- * [X] Front-end for users to upload resume, receive email for suggested jobs
- * [X] Docker compose for deployment (multi-container)
- * [ ] Add authentication for users and admins to see tasks
- * [ ] Integrate Redux
- * [ ] Integrate web sockets for real time task management
