@@ -49,7 +49,7 @@ npm start
 ```
 - App should be running on http://localhost:3000
 
-## Deployment Instructions
+## Dev Deployment Instructions
 - Set .env for compose project name
 ```
 touch .env
@@ -74,7 +74,8 @@ docker-compose up --build
  * [x] API for task management 
  * [X] Front-end for task management
  * [X] Front-end for users to upload resume, receive email for suggested jobs
- * [X] Docker compose for deployment (multi-container)
+ * [X] Docker compose for dev deployment (multi-container)
+ * [ ] Docker stack for prod orchestration and service based deployments
  * [ ] Add authentication for users and admins to see tasks
  * [ ] Integrate Redux
  * [ ] Integrate web sockets for real time task management
