@@ -1,7 +1,5 @@
 # Job Recommendation Engine
-- Takes input from resume as doc/docx from potential job candidate
-- Scrapes Indeed for potential listings using NLP
-- Sends email as task in worker queue
+**This is for HTTPS setup only**
 ## Backend Instructions
 - Install Backend:
 ```
@@ -34,13 +32,6 @@ npm start
 ```
 - App should be running on http://localhost:3000
 
-## Deployment Instructions
-- Supports docker-compose containers
-```
-docker-compose up --build
-```
-- When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
-
 ## SSL Deployment Instructions
 ```
 ./install-certs.sh
@@ -51,13 +42,9 @@ docker-compose up --build
 docker-compose up --build
 ```
 
-## TODO:
- * [x] NLP for suggesting jobs
- * [x] Email notifications
- * [x] API for task management 
- * [X] Front-end for task management
- * [X] Front-end for users to upload resume, receive email for suggested jobs
- * [X] Docker compose for deployment (multi-container)
- * [ ] Add authentication for users and admins to see tasks
- * [ ] Integrate Redux
- * [ ] Integrate web sockets for real time task management
+## Deployment Instructions
+- Supports docker-compose containers
+```
+docker-compose up --build
+```
+- When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
