@@ -1,0 +1,60 @@
+version: '3'
+
+services:
+  redis:
+    image: 'arm32v7/redis'
+    command: redis-server
+    deploy:
+        replicas: 1
+    volumes:
+      - 'redis:/data'
+    ports:
+      - '6379:6379'
+    networks:
+      - webnet
+
+  flask:
+    image: 'searchapp_flask'
+    entrypoint: python3
+    command: app.py
+    deploy:
+        replicas: 1
+    volumes:
+      - '.:/searchapp'
+    ports:
+      - '5000:5000'
+    networks:
+      - webnet
+    depends_on:
+      - celery
+
+  celery:
+    image: 'searchapp_celery'
+    entrypoint: celery
+    command: -A worker worker --loglevel=debug
+    deploy:
+        replicas: 1
+    volumes:
+      - '.:/searchapp'
+    networks:
+      - webnet
+    depends_on:
+      - redis
+
+  webapp:
+    image: 'searchapp_webapp'
+    deploy:
+        mode: replicated
+        replicas: 2
+    ports:
+     - 3000:80
+    volumes:
+     - '.:/searchapp'
+    networks:
+     - webnet
+
+volumes:
+  redis:
+
+networks:
+  webnet:
