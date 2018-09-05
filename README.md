@@ -47,7 +47,7 @@ npm start
 ```
 - App should be running on http://localhost:3000
 
-## Deployment Instructions
+## Docker Stack Deployment Instructions (For multi-container, scaling setup)
 - Set .env for compose project name
 ```
 touch .env
@@ -58,10 +58,10 @@ COMPOSE_PROJECT_NAME=searchapp
 ```
 - Set redis queue name in backend/.env
 ```
-REDIS_BROKER_URL=redis://searchapp_redis_1:6379/
+REDIS_BROKER_URL=redis://redis:6379/0
 ```
 - Start docker-compose
 ```
-docker-compose up --build
+docker stack deploy --compose-file docker-stack.yml searchapp
 ```
 - When running in development mode, change the redis broker url and updated config.py for backend services to be localhost rather than the docker-compose set .env variable
